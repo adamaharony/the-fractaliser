@@ -1,0 +1,26 @@
+{
+  "name": "fractal-tree",
+  "version": "1.0.0",
+  "description": "An end-of-semester-project for the Symmetry and Fractals course in HIT.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo Working",
+    "start": ".\\node_modules\\.bin\\electron .",
+    "build": ".\\node_modules\\.bin\\electron-packager .",
+    "updatedeps": "rmdir node_modules & npm install"
+  },
+  "keywords": [
+    "fractals",
+    "electron",
+    "nodejs",
+    "symmetry",
+    "fractal-tree",
+    "HIT"
+  ],
+  "author": "Adam Aharony",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.7.10",
+    "electron-packager": "^10.1.1"
+  }
+}

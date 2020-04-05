@@ -1,0 +1,124 @@
+<html>
+    <head>
+		<!-- Basic rendering definitions -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Importing scripts -->
+        <script type="text/javascript" src="libs/p5.min.js"></script>
+        <script type="text/javascript" src="libs/p5.dom.js"></script>
+        <script type="text/javascript" src="js/render.js"></script>
+        <script type="text/javascript" src="js/Branch.js"></script>
+        <!-- Importing CSS packages -->
+		<link rel="stylesheet" href="css/master.css">
+        <link rel="stylesheet" href="css/bulma.css" />
+        <link rel="stylesheet" href="css/fa.css" />
+    </head>
+    <body>
+        <section class="hero is-small is-primary is-bold has-text-centered">
+            <div class="hero-body">
+                <div class="container">
+					<br />
+                    <h1 id="title" class="title">"The Fractaliser - 3000":</h1>
+                    <h2 id="subtitle" class="subtitle">By Adam Aharony</h2>
+					<br />
+                    <br />
+                </div>
+            </div>
+        </section>
+        <section class="hero is-medium is-dark is-bold">
+            <div class="hero-body">
+				<div class="container">
+					<div class="tile is-ancestor">
+						<div class="tile is-6">
+							<div class="tile is-parent" id="tree">
+								<div class="tile is-child notification is-bold is-link">
+									<div class="content has-text-centered">
+										<p class="title">The tree:</p>
+										<p class="subtitle">In all of its glory!</p>
+										<div class="content">
+											<div id="fractal-tree" class="content has-text-centered"></div>
+											<div id="refreshButton" class="content has-text-centered">
+												<button class="button is-danger is-large is-bold" onclick="location.reload()">Refresh</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="tile is-parent">
+								<div class="tile is-child notification is-bold is-info" id="properties">
+									<div class="content">
+										<p class="title has-text-centered" id="properties-header">Tree properties</p>
+										<div class="content">
+											<span class="treeproperty title is-5 has-text-dark">Angle between two branches:</span>
+											 <span id="branchangle">NOT INITIALISED</span>
+											<br />
+											<br />
+											<span class="treeproperty title is-5 has-text-dark">Tree perimeter:</span>
+											<span id="treeperimeter">NOT INITIALISED</span>
+                                            <br />
+                                            <br />
+                                            <span class="treeproperty title is-5 has-text-dark">Original branch length</span>
+                                            <span id="branchlen">NOT INITIALISED</span>
+											<br />
+										</div>
+									</div>
+								</div>
+	    					</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </section>
+        <section class="hero is-small is-bold is-success">
+            <div class="hero-body">
+                <div id="rtl" class="container has-text-dark">
+                    <br />
+                    <h1 class="title is-2 has-text-centered has-text-dark">הסבר על העבודה:</h1>
+                    <h2 class="title is-3 has-text-right has-text-dark">רקע:</h2>
+                    <p class="has-text-right">3000 – The Fractaliser היא תוכנה שמציירת עץ פרקטלי* על פי הגדרות ראנדומליות.</p>
+                    <p class="has-text-right">התוכנה מציגה עץ פרקטלי שענפיו מתרבים באופן סימטרי בכל לחיצה של העכבר.</p>
+                    <br />
+                    <span class="title is-4 has-text-right has-text-dark">* פרקטל</span>
+                    <span class="has-text-right"> – צורה גיאומטרית המורכבת מעותקים קטנים יותר של עצמה.</span>
+                    <br />
+                    <br />
+                    <h2 class="title is-3 has-text-right has-text-dark">אופן החישוב:</h2>
+                    <p class="has-text-right">התוכנה משתמשת ברדיאנים על-מנת למדוד זוויות.</p>
+                    <p class="has-text-right">על-מנת לחשב את היקף העץ, נעשה שימוש בנוסחה של סדרה הנדסית שאיבריה קטנים פי 2/3  עם כל לחיצה נוספת על העכבר.</p>
+                    <br />
+                    <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/650646b040509ba6b9ac87fd201dbfe75e27c903" draggable="false">
+                    <br />
+                    <br />
+                    <h2 class="title is-4 has-text-right has-text-dark">כאשר:</h2>
+                    <p class="has-text-right">a1 – האורך של הענף הראשוני.</p>
+                    <p class="has-text-right">q – 0.67 – המספר שבו מוכפל האורך של הענף הראשון (a1).</p>
+                    <p class="has-text-right">n – מספר הרמות של העץ (מספר הלחיצות על העכבר).</p>
+                    <br />
+                    <br />
+                    <h2 class="title is-3 has-text-right has-text-dark">שלבי בניית התוכנה:</h2>
+                    <h2 class="title is-4 has-text-right has-text-dark">שלב I: הכנה</h2>
+                    <p class="has-text-right">מגדירים קנווס ומציירים בו קו מאונך לבסיסו.</p>
+                    <br />
+                    <h2 class="title is-4 has-text-right has-text-dark">שלב II: כתיבת קוד הבסיס</h2>
+                    <p class="has-text-right">כתיבת קוד הגורם לכך שבכול לחיצה על העכבר יתווספו שני ענפים אשר יצאו ראשית מתוך הקו המאונך לבסיס הקנווס, ובלחיצה נוספת על העכבר ייצאו מענפים אלו שני ענפים נוספים (מכל ענף) וכן הלאה. גודל הענפים יהיה קטן פי 2/3 מהענף שממנו ייצאו.</p>
+                    <span class="title is-5 has-text-right has-text-dark">הערה:</span>
+                    <span class="has-text-dark">הסתעפות הענפים נקבעת באופן רנדומאלי, והזווית בין שני ענפים נקבעת באופן רנדומאלי גם כן.</span>
+                    <br />
+                    <br />
+                    <h2 class="title is-4 has-text-right has-text-dark">שלב III: עיצוב התוכנה:</h2>
+                    <p class="has-text-right">כתיבת קוד המעצב את העץ שהתקבל כתוצאה מהלחיצות בעכבר. התוכנה צריכה להיראות אסתטית ולהראות את מאפייני העץ בסמוך.</p>
+                </div>
+            </div>
+        </section>
+        <footer class="footer is-light">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <br />
+                    Powered by <a href="https://electronjs.org/">Electron</a> and <a href="https://nodejs.org">Node.JS</a>. Made by <strong>Adam Aharony</strong>.
+                    <br />
+					<br />
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

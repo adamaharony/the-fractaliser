@@ -1,0 +1,49 @@
+/*
+ *  		 Made by Adam Aharony
+ *           All rights reserved
+ */
+
+
+@font-face {
+	font-family: "UI";
+	src: url("../UI-EN.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "UI-HE";
+    src: url("../UI-HE.ttf") format("truetype");
+}
+
+
+
+h1#title {
+	font-size: 50px;
+	font-weight: 200;
+}
+
+*, body {
+	font-family: "UI", "UI-HE" !important;
+	-webkit-font-smoothing: antialiased !important;
+	user-select: none;
+    -webkit-user-select: none;
+    font-weight: lighter;
+	/* -webkit-text-stroke-width: .1px; */
+}
+
+p.subtitle {
+	font-size: 16px;
+	opacity: 0.8;
+}
+
+div#properties {
+	width: 550px;
+	height: 200px;
+	display: flex;
+    position: absolute;
+    top: 35%;
+}
+ div#rtl {
+	 direction: rtl;
+     font-size: 26px;
+
+ }
