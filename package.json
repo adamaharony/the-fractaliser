@@ -20,7 +20,7 @@
   "author": "Adam Aharony",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.7.10",
+    "electron": "^1.8.8",
     "electron-packager": "^10.1.1"
   }
 }
